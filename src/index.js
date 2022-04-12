@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
-const fs = require("fs");
 const inquirer = require("inquirer");
+const generateMarkdown = require("../utils/generateMarkdown.js");
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -90,7 +90,7 @@ const questions = [
         type: "list",
         name: "license",
         message: "Choose a license you would like to add to your project, or choose 'none' if you've changed your mind.",
-        choices: ["MIT","Apache"],
+        choices: ["MIT","APACHE","BSD 2-Clause","BSD 3-Clause","GPL","LGPL","Mozilla"],
         when: ({confirmLicense}) => {
             if (confirmLicense) {
                 return true;
@@ -156,8 +156,10 @@ function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
 //function init() {}
-
+const initReadmeConverter = () => {
+    inquirer.prompt(questions)
+    .then(questionsData => generateMarkdown(questionsData));
+}
 // Function call to initialize app
-//init();
+initReadmeConverter();
 
-inquirer.prompt(questions);
