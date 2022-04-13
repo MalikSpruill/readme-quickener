@@ -1,5 +1,3 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
 const renderLicenseBadge = license => {
   return new Promise((resolve, reject) => {
   if (!license) {
@@ -35,9 +33,6 @@ const renderLicenseBadge = license => {
   }
 })
 }
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
 
 const renderLicenseLink = license => {
   return new Promise((resolve, reject) => {
@@ -76,23 +71,22 @@ const renderLicenseLink = license => {
 }
 
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// Creates the license section
 const renderLicenseSection = (license, title, link) => {
   return new Promise((resolve, reject) => {
     if (!license || !link) {
      resolve("");
     }
     resolve(`
-    ## License 📃
+  ## License 
 
-    **${title}** is distrubted under the *[${license}](${link})*.
+  **${title}** is distrubted under the [${license}](${link}) License
     `
     )} 
   )    
 }
 
-// TODO: Create a function to generate markdown for README
+// generatesMarkdown for the README
 const generateMarkdown = async questionsData => {
   const {github, email, license, ...readme} = questionsData;
   let licenseBadge;
@@ -102,15 +96,49 @@ const generateMarkdown = async questionsData => {
     licenseLink = licenseData[1];
   });
   let licenseSection = await renderLicenseSection(license,readme.projectTitle,licenseLink);
-  console.log(`
-  github: ${github}
-  email: ${email}
-  licenseBadge: ${licenseBadge}
-  licenseLink: ${licenseLink}
-  licenseSection---------------
-  ${licenseSection}
-  `);
+  
+  return `
+  # ${readme.projectTitle}
 
+  ## Description
+  ${readme.description}
+
+  ${readme.confirmTableOfContents ? `
+  ## Table of Contents
+   * [Installation](#installation)
+   * [Usage](#usage)
+   * [License](#license)
+   * [Contributing](#contributing)
+   * [Tests](#tests)
+   * [Questions](#questions)` : ""}
+
+  ${readme.installation ? `
+  ## Installation 
+     Follow these instructions to install the necessary dependences:
+     ${readme.installation}` : ""}
+
+  ${readme.usage ? `
+  ## Usage 
+     Follow these instructions to use the application properly:
+     ${readme.usage}` : ""} 
+  
+  ${licenseSection}
+
+  ${readme.contributing ? `
+  ## Contributing
+     Contributors: ${readme.contributing}` : ""}
+
+  ${readme.tests ? `
+  ## Tests 
+     Include these tools to properly run tests within the application:
+     ${readme.tests}` : ""}
+  
+  ${readme.confirmQuestions ? `
+  ## Questions
+     Have questions about the repo/application? Contact me:
+     Name: ${github}
+     Email: ${email}` : ""}
+  `;
 }
 
 module.exports = generateMarkdown;

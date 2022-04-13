@@ -1,8 +1,8 @@
-// TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const generateMarkdown = require("../utils/generateMarkdown.js");
+const writeFile = require("../utils/generateReadme.js");
 
-// TODO: Create an array of questions for user input
+// Creates array of questions for user input
 const questions = [
     {
         type: "input",
@@ -41,9 +41,21 @@ const questions = [
         }
     },
     {
+        type: "input",
+        name: "description",
+        message: "Add a description for your project (Required)",
+        validate: questionInput => {
+            if (questionInput) {
+                return true;
+            }
+            console.log("You have to type a description for your project!");
+            return false;
+        }
+    },
+    {
         type: "confirm",
         name: "confirmTableOfContents",
-        message: "Would you like to add an TableOfContents section to your project?",
+        message: "Would you like to add a TableOfContents section to your project?",
         default: false
     },
     {
@@ -138,28 +150,15 @@ const questions = [
         message: "Would you like to add a Questions section to your project?",
         default: false
     },
-    {
-        type: "input",
-        name: "questions",
-        message: "Provide some information in the Questions section",
-        when: ({confirmQuestions}) => {
-            if (confirmQuestions) {
-                return true;
-            }
-            return false;
-        }
-    }
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-//function init() {}
+//initializes README creation, which is sent to tmp sub-directory
 const initReadmeConverter = () => {
     inquirer.prompt(questions)
-    .then(questionsData => generateMarkdown(questionsData));
+    .then(questionsData => generateMarkdown(questionsData))
+    .then(markdownData => writeFile(markdownData))
+    .catch(err => new Error(err))
 }
-// Function call to initialize app
+
 initReadmeConverter();
 
