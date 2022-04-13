@@ -101,7 +101,7 @@ const questions = [
     {
         type: "list",
         name: "license",
-        message: "Choose a license you would like to add to your project, or choose 'none' if you've changed your mind.",
+        message: "Choose a license you would like to add to your project",
         choices: ["MIT","APACHE","BSD 2-Clause","BSD 3-Clause","GPL","LGPL","Mozilla"],
         when: ({confirmLicense}) => {
             if (confirmLicense) {
@@ -113,7 +113,7 @@ const questions = [
     {
         type: "confirm",
         name: "confirmContributing",
-        message: "Would you like to add an Contributing section to your project?",
+        message: "Would you like to add a Contributing section to your project?",
         default: false
     },
     {
