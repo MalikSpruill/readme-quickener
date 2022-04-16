@@ -99,45 +99,46 @@ const generateMarkdown = async questionsData => {
   
   return `
   # ${readme.projectTitle}
+  ${licenseBadge}
 
   ## Description
   ${readme.description}
 
   ${readme.confirmTableOfContents ? `
   ## Table of Contents
-   * [Installation](#installation)
-   * [Usage](#usage)
-   * [License](#license)
-   * [Contributing](#contributing)
-   * [Tests](#tests)
-   * [Questions](#questions)` : ""}
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [License](#license)
+  * [Contributing](#contributing)
+  * [Tests](#tests)
+  * [Questions](#questions)` : ""}
 
   ${readme.installation ? `
   ## Installation 
-     Follow these instructions to install the necessary dependences:
-     ${readme.installation}` : ""}
+  Follow these instructions to install the necessary dependences:
+  ${readme.installation}` : ""}
 
   ${readme.usage ? `
   ## Usage 
-     Follow these instructions to use the application properly:
-     ${readme.usage}` : ""} 
+  Follow these instructions to use the application properly:
+  ${readme.usage}` : ""} 
   
   ${licenseSection}
 
   ${readme.contributing ? `
   ## Contributing
-     Contributors: ${readme.contributing}` : ""}
+   Contributors: ${readme.contributing}` : ""}
 
   ${readme.tests ? `
   ## Tests 
-     Include these tools to properly run tests within the application:
-     ${readme.tests}` : ""}
+  Include these tools to properly run tests within the application:
+  ${readme.tests}` : ""}
   
   ${readme.confirmQuestions ? `
   ## Questions
-     Have questions about the repo/application? Contact me:
-     Name: ${github}
-     Email: ${email}` : ""}
+  Have questions about the repo/application? Contact me:
+  Name: ${github}
+  Email: ${email}` : ""}
   `;
 }
 
