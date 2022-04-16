@@ -4,7 +4,8 @@
 
   ## Description
   A useful application that allows users to generate a Readme for their own projects.
-
+  
+  https://user-images.githubusercontent.com/83142065/163690619-fc8d1eeb-d8fc-4f13-a5b1-c7c2a7361926.mp4
   
   ## Table of Contents
   * [Installation](#installation)
