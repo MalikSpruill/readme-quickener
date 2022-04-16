@@ -137,7 +137,7 @@ const generateMarkdown = async questionsData => {
   ${readme.confirmQuestions ? `
   ## Questions
   Have questions about the repo/application? Contact me:
-  Name: ${github}
+  <a href="https://github.com/${github}" target="_blank">https://github.com/${github}</a> 
   Email: ${email}` : ""}
   `;
 }

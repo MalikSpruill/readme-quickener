@@ -43,6 +43,6 @@
   
   ## Questions
   Have questions about the repo/application? Contact me:
-  Name: MalikSpruill
+  <a href="https://github.com/MalikSpruill" target="_blank">https://github.com/MalikSpruill</a>
   Email: malikspruill@gmail.com
   
